@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>事件处理</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      <button @click="funInfo">点我呀！！！</button>
+      <button @click="funInfo2($event,33)">点点点！！！</button>
+    </div>
+
+    <script>
+      // 创建vue实例
+      const vm = new Vue({
+        el: "#root",
+        data: {
+          name: "123",
+        },
+        methods: {
+          funInfo() {
+            console.log(vm === this);
+          },
+          funInfo2(event, num) {
+            console.log(event, num);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
