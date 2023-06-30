@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气案例</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div class="" id="app">
+        <div>现在天气怎么样,{{info}}</div> <br><br>
+        <button @click="changeWeather">点我试试~~~</button>
+        <hr>
+        测试深度监听
+        <div>{{numbers.a}}</div>
+        <div>{{numbers.b}}</div>
+        <button @click="numbers.a++">用来改变a的值</button>
+        <button @click="numbers.b++">用来改变b的值</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                isHot: true,
+                numbers: {
+                    a: 1,
+                    b: 2
+                }
+            },
+            computed: {
+                info() {
+                    return this.isHot ? '炎热' : '凉爽'
+                }
+            },
+            methods: {
+                changeWeather() {
+                    return this.isHot = !this.isHot
+                }
+            },
+            watch: {
+                // isHot: {
+                //     handler(newValue, oldValue) {
+                //         console.log('isHot被修改了', newValue, oldValue);
+                //     }
+                // },
+                // 简写
+                isHot(newValue, oldValue) {
+                    console.log('isHot被修改了', newValue, oldValue)
+                },
+                numbers: {
+                    deep: true, //开启深度监听
+                    handler() {
+                        console.log('numbers改变了')
+                    }
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
