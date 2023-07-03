@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>列表渲染</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>人员列表</h2>
+        <input type="text" v-model="keyword">
+        <ul>
+            <li v-for="(p,index) of listPersons" :key="index">
+                {{p.name}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+
+        // 创建vue实例
+        new Vue({
+            el: "#root",
+            data: {
+                keyword: '',
+                persons: [
+                    { id: '001', name: '小白' },
+                    { id: '002', name: '小红' },
+                    { id: '003', name: '小马' },
+                    { id: '004', name: '小白11' }
+                ],
+                // listPersons: []
+            },
+            // watch: {
+            //     keyword: {
+            //         immediate: true,
+            //         handler(val) {
+            //             this.listPersons = this.persons.filter((p) => {
+            //                 return p.name.indexOf(val) !== -1
+            //             })
+            //         }
+            //     }
+            // },
+
+            computed: {
+                listPersons() {
+                    return this.persons.filter((p) => {
+                        return p.name.indexOf(this.keyword) !== -1
+                    })
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>
