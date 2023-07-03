@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>测试Vue set方法</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+        <h2>姓名：{{student.name}}</h2>
+        <h2>年龄：{{student.age}}</h2>
+        <h2>性别：{{student.sex}}</h2>
+    </div>
+
+    <script>
+      Vue.config.productionTip = false; // 阻止vue启动时生成生产提示
+
+      // 创建vue实例
+      const vm =  new Vue({
+        el: "#root",
+        data: {
+          student:{
+            name:'小明',
+            age:22
+          }
+        },
+      });
+    </script>
+  </body>
+</html>
