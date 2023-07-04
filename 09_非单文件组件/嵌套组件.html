@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>嵌套组件使用</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <school></school>
+    </div>
+
+    <script>
+        Vue.config.productionTip = false; // 阻止vue启动时生成生产提示
+
+
+
+        // 创建student组件
+        const student = Vue.extend({
+            template: `
+                <div>
+                    <h2>{{studentName}}</h2>    
+                    <h2>{{age}}</h2>    
+                </div>
+            
+            `,
+            data() {
+                return {
+                    studentName: '小明',
+                    age: 12
+                }
+            }
+        })
+
+        // 创建school组件
+        const school = Vue.extend({
+            template: `
+                <div>
+                    <h2>{{schoolName}}</h2>
+                    <h2>{{address}}</h2>    
+                    <student></student>
+                </div>
+            `,
+            data() {
+                return {
+                    schoolName: '北京大学',
+                    address: '北京'
+                }
+            },
+            components: {
+                student
+            }
+        })
+
+
+        // 创建vue实例
+        new Vue({
+            el: "#root",
+            components: {
+                school
+            }
+        });
+    </script>
+</body>
+
+</html>
